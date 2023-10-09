@@ -137,6 +137,66 @@
     </div>
   </section>
 
+  <!-- TODO: add copy buttons -->
+  <section class="section section-neutral" aria-describedby="titleHowTo">
+    <div class="section-content">
+      <div class="container white-color">
+        <div class="row mb-3">
+          <div class="col-12">
+            <h2 id="titleHowTo">Come ottenere i vari identificativi</h2>
+          </div>
+        </div>
+        <div class="row mb-1">
+          <div class="card-wrapper">
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title h5">idRegista</h3>
+                <p class="card-text font-serif">
+                  Dalla pagina <b><i>Inserisci Appuntamento</i></b> incolla il seguente codice nella
+                  <i>console</i> del <i>browser</i> per ottenere gli
+                  identificativi di tutti i richiedenti registrati nel tuo
+                  profilo.
+                </p>
+                <pre class="text-secondary">
+const output = [...document.querySelectorAll('.imposta_utenti > tbody > tr.data')]
+  .map(e => [e.querySelector(':scope > td[headers="descrizione"]').innerText, e.id])
+  .reduce((prev, curr) => prev + `\n${curr[0]}: ${curr[1]}`, '')
+  .trim();
+
+console.log(output);
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card-wrapper">
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title h5">idAppuntamento <span style="font-weight: normal;">e</span> idRichiedente</h3>
+                <p class="card-text font-serif">
+                  Dalla pagina <b><i>Home</i></b> incolla il seguente codice
+                  nella <i>console</i> del <i>browser</i> per ottenere gli
+                  identificativi di tutti gli uffici disponibili nella provincia
+                  selezionata.
+                </p>
+                <pre class="text-secondary">
+const output = [...document.querySelectorAll('.tab_app_content')]
+  .filter(e => e.querySelector(':scope form[action="/GestioneRichiedentiAction.do"]') !== null)
+  .map(e => [e.querySelector(':scope > .tab_app_nome > span').innerText, e.querySelector(':scope input[name="idAppuntamento"]').value])
+  .reduce((prev, curr) => prev + `\n${curr[0]}: ${curr[1]}`, '')
+  .trim();
+
+console.log(output);
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="it-footer">
     <div class="it-footer-main">
       <div class="container">
