@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
        * 
        * *Only set if the appointment is for someone else.*
        */
-      const idAppuntamento = e.target.elements[''].value;
+      const idAppuntamento = e.target.elements['idAppuntamento'].value;
 
       /**
        * The **id** of the appointment's requester.
@@ -62,13 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
        * 
        * *Only set if the appointment is for someone else.*
        */
-      const idRichiedente = e.target.elements[''].value;
+      const idRichiedente = e.target.elements['idRichiedente'].value;
 
       const Richiedente = e.target.elements['richiedenteIsTitolare'].checked
         ? 'io'
         : 'altriRic';
-
-      console.log(data, orario, idRegista, Richiedente);
 
       const params = new URLSearchParams();
       params.append('codop', 'inserisciAppuntamento');
@@ -84,8 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const targetUrl = `https://www.passaportonline.poliziadistato.it/GestioneAppuntamentiCittadinoAction.do?${params}`;
 
-      console.log(targetUrl);
-      // open(targetUrl, '_blank');
+      open(targetUrl, '_blank');
     })
     .onFail(() => {
       errorWrapper.innerHTML = '';
