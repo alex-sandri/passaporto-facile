@@ -103,9 +103,26 @@
               appuntamento.
             </small>
           </div>
-          <div class="form-group">
-            <label class="active" for="Richiedente">Richiedente</label>
-            <input type="text" id="Richiedente" class="form-control" value="io">
+          <div class="form-check form-check-group">
+            <input id="richiedenteIsTitolare" type="checkbox" checked>
+            <label for="richiedenteIsTitolare">Il richiedente è il titolare del profilo</label>
+            <small class="form-text">Se si prende appuntamento per un'altra persona occorre rimuovere la spunta da questa casella.</small>
+          </div>
+          <div id="altriRic" class="row d-none">
+            <div class="form-group col-md-6">
+              <label for="idAppuntamento" class="input-number-label">idAppuntamento</label>
+              <input type="number" id="idAppuntamento" class="form-control" data-bs-input min="0" aria-describedby="idAppuntamentoHelpDescription">
+              <small id="idAppuntamentoHelpDescription" class="form-text">
+                Corrisponde all'identificativo del titolare del profilo.
+              </small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="idRichiedente" class="input-number-label">idRichiedente</label>
+              <input type="number" id="idRichiedente" class="form-control" data-bs-input min="0" aria-describedby="idRichiedenteHelpDescription">
+              <small id="idAppuntamentoHelpDescription" class="form-text">
+                Corrisponde all'identificativo del richiedente l'appuntamento.
+              </small>
+            </div>
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary">Invia</button>
