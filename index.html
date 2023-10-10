@@ -144,14 +144,18 @@
                   ottenere gli identificativi di tutti gli uffici disponibili
                   nella provincia selezionata.
                 </p>
-                <pre class="text-secondary">
-const output = [...document.querySelectorAll('.imposta_utenti > tbody > tr.data')]
+<pre class="text-secondary"><code>const output = [...document.querySelectorAll('.imposta_utenti > tbody > tr.data')]
   .map(e => [e.querySelector(':scope > td[headers="descrizione"]').innerText, e.id])
   .reduce((prev, curr) => prev + `\n${curr[0]}: ${curr[1]}`, '')
   .trim();
 
-console.log(output);
-                </pre>
+console.log(output);</code></pre>
+                <a class="read-more" href="./uffici-conosciuti.txt">
+                  <span class="text">Vedi uffici conosciuti</span>
+                  <svg class="icon">
+                    <use href="/bootstrap-italia/svg/sprites.svg#it-arrow-right"></use>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -167,15 +171,13 @@ console.log(output);
                   identificativi di tutti i richiedenti registrati nel tuo
                   profilo.
                 </p>
-                <pre class="text-secondary">
-const output = [...document.querySelectorAll('.tab_app_content')]
+<pre class="text-secondary"><code>const output = [...document.querySelectorAll('.tab_app_content')]
   .filter(e => e.querySelector(':scope form[action="/GestioneRichiedentiAction.do"]') !== null)
   .map(e => [e.querySelector(':scope > .tab_app_nome > span').innerText, e.querySelector(':scope input[name="idAppuntamento"]').value])
   .reduce((prev, curr) => prev + `\n${curr[0]}: ${curr[1]}`, '')
   .trim();
 
-console.log(output);
-                </pre>
+console.log(output);</code></pre>
               </div>
             </div>
           </div>
@@ -207,7 +209,7 @@ console.log(output);
       <div class="container">
         <ul class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
           <li class="list-inline-item">
-            <a href="/uffici-conosciuti.txt" title="Uffici conosciuti">
+            <a href="./uffici-conosciuti.txt" title="Uffici conosciuti">
               Uffici conosciuti
             </a>
           </li>
