@@ -7,11 +7,11 @@ passaporto sul [portale ufficiale della Polizia di Stato](https://www.passaporto
 
 ### `POST /GestioneAppuntamentiCittadinoAction.do`
 
-| Campo | Valore | Formato |
+| Campo | Descrizione | Formato |
 | :- | :- | :- |
-| `codop` | `confermaInserimentoAppuntamentoCittadino` | - |
-| `idRegista` | *Identificativo dell'ufficio* | - |
-| `richiedente` | `altriRic` | - |
+| `codop` | - | `confermaInserimentoAppuntamentoCittadino` |
+| `idRegista` | *Identificativo dell'ufficio* | *Vedi [**Uffici**](https://passaporto-facile.alexsandri.com/uffici/)* |
+| `richiedente` | - | `altriRic` |
 | `idAppuntamento` | *Identificativo del richiedente* | - |
 | `linguaApp` | *La lingua dell'applicazione* | `italiano` |
 | `data` | *La data dell'appuntamento* | `dd-mm-yyyy` |
