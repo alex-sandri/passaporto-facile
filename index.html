@@ -88,6 +88,21 @@
           responsabilità in caso di errori o malfunzionamenti.
         </div>
         <form method="post" action="" class="pt-5">
+          <!-- HIDDEN INPUTS - BEGIN -->
+          <input type="hidden" name="codop" value="confermaInserimentoAppuntamentoCittadino">
+          <!-- TODO: add support for other languages -->
+          <input type="hidden" name="linguaApp" value="italiano">
+          <!--
+            These inputs are required as some fields require a specific format
+            that's different from the default one provided by native elements.
+          -->
+          <input type="hidden" name="data">
+          <input type="hidden" name="orario">
+          <input type="hidden" name="valoreOra">
+          <input type="hidden" name="oraPlus">
+          <input type="hidden" name="dataNascita">
+          <input type="hidden" name="sDataScadenzaPassaporto">
+          <!-- HIDDEN INPUTS - END -->
           <div class="row">
             <div class="form-group col-md-6">
               <label class="active" for="data">Data</label>
@@ -108,13 +123,247 @@
             <small class="form-text">Se si prende appuntamento per un'altra persona occorre rimuovere la spunta da questa casella.</small>
           </div>
           <div id="altriRic" class="row d-none">
-            <div class="form-group col-md-6">
-              <label for="idAppuntamento" class="input-number-label">Identificativo titolare</label>
+            <div class="form-group">
+              <label for="idAppuntamento" class="input-number-label">Identificativo richiedente</label>
               <input type="number" id="idAppuntamento" class="form-control" data-bs-input min="0">
             </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" class="form-control">
+            </div>
+            <div class="form-group col-md">
+              <label for="cognome">Cognome</label>
+              <input type="text" id="cognome" class="form-control">
+            </div>
             <div class="form-group col-md-6">
-              <label for="idRichiedente" class="input-number-label">Identificativo richiedente</label>
-              <input type="number" id="idRichiedente" class="form-control" data-bs-input min="0">
+              <label for="codiceFiscale">Codice Fiscale</label>
+              <input type="text" id="codiceFiscale" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md border">
+              <label class="active">Sesso</label>
+              <div class="form-check form-check-inline">
+                <input type="radio" name="sesso" id="sesso-m" class="form-control">
+                <label for="sesso-m">M</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="radio" name="sesso" id="sesso-f" class="form-control">
+                <label for="sesso-f">F</label>
+              </div>
+            </div>
+            <div class="form-group col-md-9">
+              <label class="active" for="dataNascita">Data di nascita</label>
+              <input type="date" id="dataNascita" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <!-- TODO: add support for other countries -->
+              <label for="codStatoNascita" class="active">Stato di nascita</label>
+              <input type="text" id="codStatoNascita" class="form-control" value="ITA" disabled>
+            </div>
+            <div class="form-group col-md-4">
+              <!-- TODO: use select instead of text input -->
+              <label for="provinciaNascita">Provincia di nascita</label>
+              <input type="text" id="provinciaNascita" class="form-control" minlength="2" maxlength="2">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="comuneNascita">Comune di nascita</label>
+              <input type="text" id="comuneNascita" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <!-- TODO: add support for other countries -->
+              <label for="codStatoResidenza" class="active">Stato di residenza</label>
+              <input type="text" id="codStatoResidenza" class="form-control" value="ITA" disabled>
+            </div>
+            <div class="form-group col-md-4">
+              <!-- TODO: use select instead of text input -->
+              <label for="provincia">Provincia di residenza</label>
+              <input type="text" id="provincia" class="form-control" minlength="2" maxlength="2">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="comuneResidenza">Comune di residenza</label>
+              <input type="text" id="comuneResidenza" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-9">
+              <label for="indirizzo">Indirizzo</label>
+              <input type="text" id="indirizzo" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="numeroCivico">Numero civico</label>
+              <input type="text" id="numeroCivico" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="telefono">Numero di telefono</label>
+              <input type="tel" id="telefono" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="email">Indirizzo email</label>
+              <input type="email" id="email" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label for="altezza" class="input-number-label">Altezza</label>
+              <input type="number" id="altezza" class="form-control" data-bs-input min="0" aria-describedby="altezzaDescription">
+              <small id="altezzaDescription" class="form-text">In centimetri</small>
+            </div>
+            <div class="form-group select-wrapper col-md-4">
+              <label for="occhi">Occhi</label>
+              <select id="occhi">
+                <option value="" selected disabled>Scegli un'opzione</option>
+                <option value="Azzurri">Azzurri</option>
+                <option value="Grigi">Grigi</option>
+                <option value="Verdi">Verdi</option>
+                <option value="Marroni">Marroni</option>
+                <option value="Neri">Neri</option>
+              </select>
+            </div>
+            <div class="form-group select-wrapper col-md-4">
+              <label for="statoCivile">Stato civile</label>
+              <select id="statoCivile">
+                <option value="" selected disabled>Scegli un'opzione</option>
+                <option value="celibe">celibe</option>
+                <option value="coniugato/a">coniugato/a</option>
+                <option value="divorziato/a">divorziato/a</option>
+                <option value="nubile">nubile</option>
+                <option value="separato/a">separato/a</option>
+                <option value="tutelato/a">tutelato/a</option>
+                <option value="vedovo/a">vedovo/a</option>
+              </select>
+            </div>
+          </div>
+          <div id="nome-coniuge" class="row d-none">
+            <div class="form-group col-md-6">
+              <label for="nomeConiuge">Nome coniuge</label>
+              <input type="text" id="nomeConiuge" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cognomeConiuge">Cognome coniuge</label>
+              <input type="text" id="cognomeConiuge" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group select-wrapper col-md-8">
+              <label for="codiceDocumento">Tipo di documento d'identità</label>
+              <select id="codiceDocumento">
+                <option value="" selected disabled>Scegli un'opzione</option>
+                <option value="SPROVVISTO DI DOCUMENTO">SPROVVISTO DI DOCUMENTO</option>
+                <option value="CARTA DI IDENTITA'">CARTA DI IDENTITA'</option>
+                <option value="CARTA IDENTITA' ELETTRONICA">CARTA IDENTITA' ELETTRONICA</option>
+                <option value="CERTIFICATO D'IDENTITA'">CERTIFICATO D'IDENTITA'</option>
+                <option value="PASSAPORTO DI SERVIZIO">PASSAPORTO DI SERVIZIO</option>
+                <option value="PASSAPORTO DIPLOMATICO">PASSAPORTO DIPLOMATICO</option>
+                <option value="PASSAPORTO ORDINARIO">PASSAPORTO ORDINARIO</option>
+                <option value="PATENTE DI GUIDA">PATENTE DI GUIDA</option>
+                <option value="PATENTE NAUTICA">PATENTE NAUTICA</option>
+                <option value="TES. ENTE NAZ. ASSIS.VOLO">TES. ENTE NAZ. ASSIS.VOLO</option>
+                <option value="TES. FERROV. EX DEPUTATI">TES. FERROV. EX DEPUTATI</option>
+                <option value="TES. FERROVIARIA DEPUTATI">TES. FERROVIARIA DEPUTATI</option>
+                <option value="TES. POSTE E TELECOMUNIC.">TES. POSTE E TELECOMUNIC.</option>
+                <option value="TES. UNICO PER LA CAMERA">TES. UNICO PER LA CAMERA</option>
+                <option value="TES. DOGANALE RIL.MIN.FIN.">TES. DOGANALE RIL.MIN.FIN.</option>
+                <option value="TESS. AG. E AG.SC. C.F.S.">TESS. AG. E AG.SC. C.F.S.</option>
+                <option value="TESS. AGENTI/ASS.TI P.P.">TESS. AGENTI/ASS.TI P.P.</option>
+                <option value="TESS. AGENTI/ASS.TI P.S.">TESS. AGENTI/ASS.TI P.S.</option>
+                <option value="TESS. APP.TO AG.CUSTODIA">TESS. APP.TO AG.CUSTODIA</option>
+                <option value="TESS. APP.TO CARABINIERI">TESS. APP.TO CARABINIERI</option>
+                <option value="TESS. APP.TO FINANZIERE">TESS. APP.TO FINANZIERE</option>
+                <option value="TESS. APP.TO/VIG. URBANO">TESS. APP.TO/VIG. URBANO</option>
+                <option value="TESS. APP.TO/VIG. VV.FF.">TESS. APP.TO/VIG. VV.FF.</option>
+                <option value="TESS. CONSIGLIO DI STATO">TESS. CONSIGLIO DI STATO</option>
+                <option value="TESS. CORTE D'APPELLO">TESS. CORTE D'APPELLO</option>
+                <option value="TESS. CORTE DEI CONTI">TESS. CORTE DEI CONTI</option>
+                <option value="TESS. FERROV. SENATO">TESS. FERROV. SENATO</option>
+                <option value="TESS. FUNZIONARI P.S.">TESS. FUNZIONARI P.S.</option>
+                <option value="TESS. IDENTIF.TELECOM IT.">TESS. IDENTIF.TELECOM IT.</option>
+                <option value="TESS. ISCR. ALBO MED/CHI.">TESS. ISCR. ALBO MED/CHI.</option>
+                <option value="TESS. ISCRIZ. ALBO ODONT.">TESS. ISCRIZ. ALBO ODONT.</option>
+                <option value="TESS. ISPETTORI P.P.">TESS. ISPETTORI P.P.</option>
+                <option value="TESS. ISPETTORI P.S.">TESS. ISPETTORI P.S.</option>
+                <option value="TESS. MEMBRO EQUIP. AEREO">TESS. MEMBRO EQUIP. AEREO</option>
+                <option value="TESS. MILIT. M.M.">TESS. MILIT. M.M.</option>
+                <option value="TESS. MILIT. TRUPPA SISMI">TESS. MILIT. TRUPPA SISMI</option>
+                <option value="TESS. MILITARE E.I.">TESS. MILITARE E.I.</option>
+                <option value="TESS. MILITARE NATO">TESS. MILITARE NATO</option>
+                <option value="TESS. MILITARE TRUPPA A.M">TESS. MILITARE TRUPPA A.M</option>
+                <option value="TESS. MIN.BEN.E ATT.CULT.">TESS. MIN.BEN.E ATT.CULT.</option>
+                <option value="TESS. MIN.PUBB.ISTRUZIONE">TESS. MIN.PUBB.ISTRUZIONE</option>
+                <option value="TESS. MINIST. TRASP/NAVIG">TESS. MINIST. TRASP/NAVIG</option>
+                <option value="TESS. MINISTERO DIFESA">TESS. MINISTERO DIFESA</option>
+                <option value="TESS. MINISTERO FINANZE">TESS. MINISTERO FINANZE</option>
+                <option value="TESS. MINISTERO GIUSTIZIA">TESS. MINISTERO GIUSTIZIA</option>
+                <option value="TESS. MINISTERO INTERNO">TESS. MINISTERO INTERNO</option>
+                <option value="TESS. MINISTERO LAVORI PU">TESS. MINISTERO LAVORI PU</option>
+                <option value="TESS. MINISTERO SANITA'">TESS. MINISTERO SANITA'</option>
+                <option value="TESS. MINISTERO TESORO">TESS. MINISTERO TESORO</option>
+                <option value="TESS. ORDINE GIORNALISTI">TESS. ORDINE GIORNALISTI</option>
+                <option value="TESS. PARLAMENTARI">TESS. PARLAMENTARI</option>
+                <option value="TESS. PERS. MAGISTRATI">TESS. PERS. MAGISTRATI</option>
+                <option value="TESS. POL. TRIB. G.D.F.">TESS. POL. TRIB. G.D.F.</option>
+                <option value="TESS. POLIZIA FEMMINILE">TESS. POLIZIA FEMMINILE</option>
+                <option value="TESS. PRES.ZA CONS. MIN.">TESS. PRES.ZA CONS. MIN.</option>
+                <option value="TESS. PUBBLICA ISTRUZIONE">TESS. PUBBLICA ISTRUZIONE</option>
+                <option value="TESS. S.I.S.D.E.">TESS. S.I.S.D.E.</option>
+                <option value="TESS. SOTT.LI AG.CUSTODIA">TESS. SOTT.LI AG.CUSTODIA</option>
+                <option value="TESS. SOTT.LI G.D.F.">TESS. SOTT.LI G.D.F.</option>
+                <option value="TESS. SOTT.LI VIG. URBANI">TESS. SOTT.LI VIG. URBANI</option>
+                <option value="TESS. SOTTUFF.LI VV.FF.">TESS. SOTTUFF.LI VV.FF.</option>
+                <option value="TESS. SOTTUFFICIALI A.M.">TESS. SOTTUFFICIALI A.M.</option>
+                <option value="TESS. SOTTUFFICIALI CC">TESS. SOTTUFFICIALI CC</option>
+                <option value="TESS. SOTTUFFICIALI E.I.">TESS. SOTTUFFICIALI E.I.</option>
+                <option value="TESS. SOTTUFFICIALI SISMI">TESS. SOTTUFFICIALI SISMI</option>
+                <option value="TESS. SOTTUFICIALI C.F.S.">TESS. SOTTUFICIALI C.F.S.</option>
+                <option value="TESS. SOTTUFICIALI M.M.">TESS. SOTTUFICIALI M.M.</option>
+                <option value="TESS. SOVRINTENDENTI P.P.">TESS. SOVRINTENDENTI P.P.</option>
+                <option value="TESS. SOVRINTENDENTI P.S.">TESS. SOVRINTENDENTI P.S.</option>
+                <option value="TESS. UFF.LI AG.CUSTODIA">TESS. UFF.LI AG.CUSTODIA</option>
+                <option value="TESS. UFF.LI VIG.URBANI">TESS. UFF.LI VIG.URBANI</option>
+                <option value="TESS. UFFICIALE">TESS. UFFICIALE</option>
+                <option value="TESS. UFFICIALI A.M.">TESS. UFFICIALI A.M.</option>
+                <option value="TESS. UFFICIALI C.F.S.">TESS. UFFICIALI C.F.S.</option>
+                <option value="TESS. UFFICIALI E.I.">TESS. UFFICIALI E.I.</option>
+                <option value="TESS. UFFICIALI G.D.F.">TESS. UFFICIALI G.D.F.</option>
+                <option value="TESS. UFFICIALI M.M.">TESS. UFFICIALI M.M.</option>
+                <option value="TESS. UFFICIALI P.P.">TESS. UFFICIALI P.P.</option>
+                <option value="TESS. UFFICIALI P.S.">TESS. UFFICIALI P.S.</option>
+                <option value="TESS. UFFICIALI SISMI">TESS. UFFICIALI SISMI</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="numeroDocumento">Numero del documento d'identità</label>
+              <input type="text" id="numeroDocumento" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label class="active" for="sDataScadenzaPassaporto">Data di scadenza dell'eventuale passaporto già in tuo possesso</label>
+              <input type="date" id="sDataScadenzaPassaporto" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="note">Note</label>
+              <textarea id="note" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input type="checkbox" id="haFigli">
+              <label for="haFigli">Ha figli minori?</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" id="precedentiPenali">
+              <label for="precedentiPenali">E' a conoscenza di motivi ostativi al rilascio del passaporto? (<b>art.3 L.1185/67</b>)</label>
             </div>
           </div>
           <div class="form-group">

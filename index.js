@@ -1,80 +1,63 @@
-const richiedenteIsTitolare = document.getElementById('richiedenteIsTitolare');
+/**
+ * Registers a event listener to automatically convert the input's value into
+ * the desired format for the actual request.
+ * 
+ * @param {string} id The source input's id.
+ * @param {(value: string) => string} convert The converter function.
+ * @param {string} target The target input's name.
+ */
+const convertAndUpdate = (id, convert, target) => {
+  document.getElementById(id).addEventListener(
+    'change',
+    e => document.querySelector(`input[name="${target}"]`).value = convert(e.target.value)
+  );
+}
 
-richiedenteIsTitolare.addEventListener('change', () => {
-  document.getElementById('altriRic').classList.toggle('d-none');
+/**
+ * Converts a date string value in the `yyyy-mm-dd` format, for example from an
+ * input, to the `dd-mm-yyyy` format.
+ * 
+ * @param {string} date The date to convert.
+ * @returns {string} The converted date string.
+ */
+const dateConverter = (date) => date.split('-').reverse().join('-');
+
+/**
+ * Converts a time string value in the `hh:mm` format, for example from an
+ * input, to the `hh.mm` format, or `h.mm` if a the hours value has a leading
+ * zero.
+ * 
+ * @param {string} time The time to convert.
+ * @returns {string} The converted time string.
+ */
+const timeConverter = (time) => time.replace(':', '.').replace(/^[0]{1}/, '');
+
+convertAndUpdate('data', dateConverter, 'data');
+convertAndUpdate('orario', timeConverter, 'orario');
+convertAndUpdate('orario', timeConverter, 'valoreOra');
+convertAndUpdate('orario', (time) => {
+  let [hours, minutes] = time.split(':');
+
+  hours = `${parseInt(hours) + 1}`.padStart(2, '0');
+
+  return timeConverter(`${hours}:${minutes}`);
+}, 'oraPlus');
+convertAndUpdate('dataNascita', dateConverter, 'dataNascita');
+convertAndUpdate('sDataScadenzaPassaporto', dateConverter, 'sDataScadenzaPassaporto');
+
+document
+  .getElementById('richiedenteIsTitolare')
+  .addEventListener(
+    'change',
+    () => document.getElementById('altriRic').classList.toggle('d-none')
+  );
+
+document.getElementById('statoCivile').addEventListener('change', e => {
+  const shouldHideSpouseNameInputs = e.target.value !== 'coniugato/a';
+
+  document.getElementById('nome-coniuge').classList.remove('d-none');
+
+  if (shouldHideSpouseNameInputs) {
+    document.getElementById('nome-coniuge').classList.add('d-none');
+  }
 });
-
-const validate = new bootstrap.FormValidate('#form', {
-  errorFieldCssClass: 'is-invalid',
-  errorLabelCssClass: 'form-feedback',
-  errorLabelStyle: '',
-  focusInvalidField: false,
-});
-
-// TODO: idAppuntamento and idRichiedente are required when richiedenteIsTitolare is not checked.
-
-validate
-  .addField('#data', [
-    { rule: 'required', errorMessage: 'Questo campo è richiesto' },
-  ])
-  .addField('#orario', [
-    { rule: 'required', errorMessage: 'Questo campo è richiesto' },
-  ])
-  .addField('#idRegista', [
-    { rule: 'required', errorMessage: 'Questo campo è richiesto' },
-  ])
-  .onSuccess((e) => {
-    // Date value is always formatted as 'yyyy-mm-dd'
-    const data = e.target.elements['data'].value
-      .split('-')
-      .reverse() // Date must be formatted as 'dd-mm-yyyy'
-      .join('-');
-
-    // Time value is always formatted as 'hh:mm'
-    const orario = e.target.elements['orario'].value
-      .replace(':', '.')
-      .replace(/^[0]{1}/, ''); // Time must not have any leading zeros
-
-    /**
-     * The **id** of the office in which the appointment is made.
-     */
-    const idRegista = e.target.elements['idRegista'].value;
-
-    /**
-     * The **id** of the profile's owner.
-     * 
-     * ---
-     * 
-     * *Only set if the appointment is for someone else.*
-     */
-    const idAppuntamento = e.target.elements['idAppuntamento'].value;
-
-    /**
-     * The **id** of the appointment's requester.
-     * 
-     * ---
-     * 
-     * *Only set if the appointment is for someone else.*
-     */
-    const idRichiedente = e.target.elements['idRichiedente'].value;
-
-    const Richiedente = e.target.elements['richiedenteIsTitolare'].checked
-      ? 'io'
-      : 'altriRic';
-
-    const params = new URLSearchParams();
-    params.append('codop', 'inserisciAppuntamento');
-    params.append('data', data);
-    params.append('orario', orario);
-    params.append('idRegista', idRegista);
-    params.append('Richiedente', Richiedente);
-
-    if (Richiedente !== 'io') {
-      params.append('idAppuntamento', idAppuntamento);
-      params.append('idRichiedente', idRichiedente);
-    }
-
-    const targetUrl = `https://www.passaportonline.poliziadistato.it/GestioneAppuntamentiCittadinoAction.do?${params}`;
-
-    open(targetUrl, '_blank');
-  });
