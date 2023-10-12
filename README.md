@@ -7,6 +7,9 @@ passaporto sul [portale ufficiale della Polizia di Stato](https://www.passaporto
 
 ### `POST /GestioneAppuntamentiCittadinoAction.do`
 
+***Nota:** i campi facoltativi se non compilati vanno comunque trasmessi con un
+valore vuoto*.
+
 | Campo | Descrizione | Formato | Richiesto |
 | :- | :- | :- | :-: |
 | `codop` | - | `confermaInserimentoAppuntamentoCittadino` | :white_check_mark: |
