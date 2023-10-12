@@ -14,8 +14,8 @@ valore vuoto*.
 | :- | :- | :- | :-: |
 | `codop` | - | `confermaInserimentoAppuntamentoCittadino` | :white_check_mark: |
 | `idRegista` | *Identificativo dell'ufficio* | *Vedi [**Uffici**](https://passaporto-facile.alexsandri.com/uffici/)* | :white_check_mark: |
-| `richiedente` | - | `altriRic` | :white_check_mark: |
-| `idAppuntamento` | *Identificativo del richiedente* | - | :white_check_mark: |
+| `richiedente` | *Se si prenota per un'altra persona va specificato anche `idAppuntamento`* | `altriRic` | :x: |
+| `idAppuntamento` | *Identificativo del richiedente* | - | :x: |
 | `linguaApp` | *La lingua dell'applicazione* | `italiano` | :white_check_mark: |
 | `data` | *La data dell'appuntamento* | `dd-mm-yyyy` | :white_check_mark: |
 | `orario` | *L'ora dell'appuntamento* | `h.00` o `hh.00` | :white_check_mark: |
