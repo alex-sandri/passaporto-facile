@@ -5,11 +5,14 @@
  * @param {string} id The source input's id.
  * @param {(value: string) => string} convert The converter function.
  * @param {string} target The target input's name.
+ * @param {((e: Event) => any) | null | undefined} property ***(Optional)*** The property to convert.
  */
-const convertAndUpdate = (id, convert, target) => {
+const convertAndUpdate = (id, convert, target, property) => {
+  property ??= (e) => e.target.value;
+
   document.getElementById(id).addEventListener(
     'change',
-    e => document.querySelector(`input[name="${target}"]`).value = convert(e.target.value)
+    e => document.querySelector(`input[name="${target}"]`).value = convert(property(e))
   );
 }
 
@@ -32,9 +35,18 @@ const dateConverter = (date) => date.split('-').reverse().join('-');
  */
 const timeConverter = (time) => time.replace(':', '.').replace(/^[0]{1}/, '');
 
+/**
+ * Converts a checbox's value into either `S` when checked and `N` otherwise.
+ * 
+ * @param {boolean} value The value to convert.
+ * @returns {string} The converted value.
+ */
+const checkboxConverter = (value) => value ? 'S' : 'N';
+
 convertAndUpdate('data', dateConverter, 'data');
 convertAndUpdate('orario', timeConverter, 'orario');
 convertAndUpdate('orario', timeConverter, 'valoreOra');
+
 convertAndUpdate('orario', (time) => {
   let [hours, minutes] = time.split(':');
 
@@ -42,15 +54,52 @@ convertAndUpdate('orario', (time) => {
 
   return timeConverter(`${hours}:${minutes}`);
 }, 'oraPlus');
+
 convertAndUpdate('dataNascita', dateConverter, 'dataNascita');
-convertAndUpdate('sDataScadenzaPassaporto', dateConverter, 'sDataScadenzaPassaporto');
+convertAndUpdate('email', (email) => email, 'email2');
+
+convertAndUpdate(
+  'sDataScadenzaPassaporto',
+  dateConverter,
+  'sDataScadenzaPassaporto'
+);
+
+convertAndUpdate(
+  'haFigli',
+  checkboxConverter,
+  'haFigli', (e) => e.target.checked
+);
+
+convertAndUpdate(
+  'precedentiPenali',
+  checkboxConverter,
+  'precedentiPenali', (e) => e.target.checked
+);
 
 document
   .getElementById('richiedenteIsTitolare')
-  .addEventListener(
-    'change',
-    () => document.getElementById('altriRic').classList.toggle('d-none')
-  );
+  .addEventListener('change', (e) => {
+    const richiedenteIsTitolare = e.target.checked;
+
+    document.getElementById('altriRic').classList.toggle('d-none');
+
+    document.querySelector('input[name=richiedente]')?.remove();
+
+    document.getElementById('idAppuntamento')?.removeAttribute('name');
+
+    if (!richiedenteIsTitolare) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'richiedente';
+      input.value = 'altriRic';
+
+      document.querySelector('form').appendChild(input);
+
+      document
+        .getElementById('idAppuntamento')
+        .setAttribute('name', 'idAppuntamento');
+    }
+  });
 
 document.getElementById('statoCivile').addEventListener('change', e => {
   const shouldHideSpouseNameInputs = e.target.value !== 'coniugato/a';

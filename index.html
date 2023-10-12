@@ -101,7 +101,10 @@
           <input type="hidden" name="valoreOra">
           <input type="hidden" name="oraPlus">
           <input type="hidden" name="dataNascita">
+          <input type="hidden" name="email2">
           <input type="hidden" name="sDataScadenzaPassaporto">
+          <input type="hidden" name="haFigli" value="N">
+          <input type="hidden" name="precedentiPenali" value="N">
           <!-- HIDDEN INPUTS - END -->
           <div class="row">
             <div class="form-group col-md-6">
@@ -115,7 +118,7 @@
           </div>
           <div class="form-group">
             <label for="idRegista" class="input-number-label">Identificativo ufficio</label>
-            <input type="number" id="idRegista" class="form-control" data-bs-input min="0">
+            <input type="number" name="idRegista" id="idRegista" class="form-control" data-bs-input min="0">
           </div>
           <div class="form-check form-check-group">
             <input id="richiedenteIsTitolare" type="checkbox" checked>
@@ -131,26 +134,26 @@
           <div class="row">
             <div class="form-group col-md">
               <label for="nome">Nome</label>
-              <input type="text" id="nome" class="form-control">
+              <input type="text" name="nome" id="nome" class="form-control">
             </div>
             <div class="form-group col-md">
               <label for="cognome">Cognome</label>
-              <input type="text" id="cognome" class="form-control">
+              <input type="text" name="cognome" id="cognome" class="form-control">
             </div>
             <div class="form-group col-md-6">
               <label for="codiceFiscale">Codice Fiscale</label>
-              <input type="text" id="codiceFiscale" class="form-control">
+              <input type="text" name="codiceFiscale" id="codiceFiscale" class="form-control">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md border">
               <label class="active">Sesso</label>
               <div class="form-check form-check-inline">
-                <input type="radio" name="sesso" id="sesso-m" class="form-control">
+                <input type="radio" name="sesso" value="M" id="sesso-m" class="form-control">
                 <label for="sesso-m">M</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="radio" name="sesso" id="sesso-f" class="form-control">
+                <input type="radio" name="sesso" value="F" id="sesso-f" class="form-control">
                 <label for="sesso-f">F</label>
               </div>
             </div>
@@ -163,63 +166,63 @@
             <div class="form-group col-md-4">
               <!-- TODO: add support for other countries -->
               <label for="codStatoNascita" class="active">Stato di nascita</label>
-              <input type="text" id="codStatoNascita" class="form-control" value="ITA" disabled>
+              <input type="text" name="codStatoNascita" id="codStatoNascita" class="form-control" value="ITA" disabled>
             </div>
             <div class="form-group col-md-4">
               <!-- TODO: use select instead of text input -->
               <label for="provinciaNascita">Provincia di nascita</label>
-              <input type="text" id="provinciaNascita" class="form-control" minlength="2" maxlength="2">
+              <input type="text" name="provinciaNascita" id="provinciaNascita" class="form-control" minlength="2" maxlength="2">
             </div>
             <div class="form-group col-md-4">
               <label for="comuneNascita">Comune di nascita</label>
-              <input type="text" id="comuneNascita" class="form-control">
+              <input type="text" name="comuneNascita" id="comuneNascita" class="form-control">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-4">
               <!-- TODO: add support for other countries -->
               <label for="codStatoResidenza" class="active">Stato di residenza</label>
-              <input type="text" id="codStatoResidenza" class="form-control" value="ITA" disabled>
+              <input type="text" name="codStatoResidenza" id="codStatoResidenza" class="form-control" value="ITA" disabled>
             </div>
             <div class="form-group col-md-4">
               <!-- TODO: use select instead of text input -->
               <label for="provincia">Provincia di residenza</label>
-              <input type="text" id="provincia" class="form-control" minlength="2" maxlength="2">
+              <input type="text" name="provincia" id="provincia" class="form-control" minlength="2" maxlength="2">
             </div>
             <div class="form-group col-md-4">
               <label for="comuneResidenza">Comune di residenza</label>
-              <input type="text" id="comuneResidenza" class="form-control">
+              <input type="text" name="comuneResidenza" id="comuneResidenza" class="form-control">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-9">
               <label for="indirizzo">Indirizzo</label>
-              <input type="text" id="indirizzo" class="form-control">
+              <input type="text" name="indirizzo" id="indirizzo" class="form-control">
             </div>
             <div class="form-group col-md-3">
               <label for="numeroCivico">Numero civico</label>
-              <input type="text" id="numeroCivico" class="form-control">
+              <input type="text" name="numeroCivico" id="numeroCivico" class="form-control">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-6">
               <label for="telefono">Numero di telefono</label>
-              <input type="tel" id="telefono" class="form-control">
+              <input type="tel" name="telefono" id="telefono" class="form-control">
             </div>
             <div class="form-group col-md-6">
               <label for="email">Indirizzo email</label>
-              <input type="email" id="email" class="form-control">
+              <input type="email" name="email" id="email" class="form-control">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-4">
               <label for="altezza" class="input-number-label">Altezza</label>
-              <input type="number" id="altezza" class="form-control" data-bs-input min="0" aria-describedby="altezzaDescription">
+              <input type="number" name="altezza" id="altezza" class="form-control" data-bs-input min="0" aria-describedby="altezzaDescription">
               <small id="altezzaDescription" class="form-text">In centimetri</small>
             </div>
             <div class="form-group select-wrapper col-md-4">
               <label for="occhi">Occhi</label>
-              <select id="occhi">
+              <select name="occhi" id="occhi">
                 <option value="" selected disabled>Scegli un'opzione</option>
                 <option value="Azzurri">Azzurri</option>
                 <option value="Grigi">Grigi</option>
@@ -230,7 +233,7 @@
             </div>
             <div class="form-group select-wrapper col-md-4">
               <label for="statoCivile">Stato civile</label>
-              <select id="statoCivile">
+              <select name="statoCivile" id="statoCivile">
                 <option value="" selected disabled>Scegli un'opzione</option>
                 <option value="celibe">celibe</option>
                 <option value="coniugato/a">coniugato/a</option>
@@ -245,17 +248,17 @@
           <div id="nome-coniuge" class="row d-none">
             <div class="form-group col-md-6">
               <label for="nomeConiuge">Nome coniuge</label>
-              <input type="text" id="nomeConiuge" class="form-control">
+              <input type="text" name="nomeConiuge" id="nomeConiuge" class="form-control">
             </div>
             <div class="form-group col-md-6">
               <label for="cognomeConiuge">Cognome coniuge</label>
-              <input type="text" id="cognomeConiuge" class="form-control">
+              <input type="text" name="cognomeConiuge" id="cognomeConiuge" class="form-control">
             </div>
           </div>
           <div class="row">
             <div class="form-group select-wrapper col-md-8">
               <label for="codiceDocumento">Tipo di documento d'identità</label>
-              <select id="codiceDocumento">
+              <select name="codiceDocumento" id="codiceDocumento">
                 <option value="" selected disabled>Scegli un'opzione</option>
                 <option value="SPROVVISTO DI DOCUMENTO">SPROVVISTO DI DOCUMENTO</option>
                 <option value="CARTA DI IDENTITA'">CARTA DI IDENTITA'</option>
@@ -341,7 +344,7 @@
             </div>
             <div class="form-group col-md-4">
               <label for="numeroDocumento">Numero del documento d'identità</label>
-              <input type="text" id="numeroDocumento" class="form-control">
+              <input type="text" name="numeroDocumento" id="numeroDocumento" class="form-control">
             </div>
           </div>
           <div class="row">
@@ -353,7 +356,7 @@
           <div class="row">
             <div class="form-group">
               <label for="note">Note</label>
-              <textarea id="note" rows="3"></textarea>
+              <textarea name="note" id="note" rows="3"></textarea>
             </div>
           </div>
           <div class="form-group">
