@@ -36,7 +36,7 @@ passaporto sul [portale ufficiale della Polizia di Stato](https://www.passaporto
 | `email` | *Indirizzo email del richiedente* | - |
 | `email2` | *Uguale ad `email`* | - |
 | `occhi` | *Colore degli occhi del richiedente* | `Azzurri`, `Grigi`, `Verdi`, `Marroni` o `Neri` |
-| `statoCivile` | *Stato civile del richiedente* | `celibe`, `coniugato/a`, `divorziato/a`, `nubile`, `separato/a`, `tutelato/a`, `vedovo/a` |
+| `statoCivile` | *Stato civile del richiedente* | `celibe`, `coniugato/a`, `divorziato/a`, `nubile`, `separato/a`, `tutelato/a` o `vedovo/a` |
 | `cognomeConiuge` | *Eventuale cognome del coniuge* | - |
 | `nomeConiuge` | *Eventuale nome del coniuge* | - |
 | `codiceDocumento` | *Tipo di documento d'identità del richiedente* | *Vedi [`codiceDocumento`](#codicedocumento)* |
