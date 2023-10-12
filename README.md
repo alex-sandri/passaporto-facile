@@ -42,7 +42,7 @@ passaporto sul [portale ufficiale della Polizia di Stato](https://www.passaporto
 | `codiceDocumento` | *Tipo di documento d'identità del richiedente* | *Vedi [`codiceDocumento`](#codicedocumento)* |
 | `numeroDocumento` | *Numero del documento d'identità del richiedente* | - |
 | `haFigli` | *Se il richiedente ha figli minori* | `S`(ì) o `N`(o) |
-| `precedentiPenali` | *Se il richiedente è a conoscenza di motivi ostativi al rilascio del passaporto (art.3 L.1185/67)* | `S`(ì) o `N`(o) |
+| `precedentiPenali` | *Se il richiedente è a conoscenza di motivi ostativi al rilascio del passaporto (**art.3 L.1185/67**)* | `S`(ì) o `N`(o) |
 | `sDataScadenzaPassaporto` | *Eventuale data di scadenza del passaporto in possesso del richiedente* | `dd-mm-yyyy` |
 | `note` | *Eventuali note* | - |
 
