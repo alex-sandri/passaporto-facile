@@ -7,44 +7,44 @@ passaporto sul [portale ufficiale della Polizia di Stato](https://www.passaporto
 
 ### `POST /GestioneAppuntamentiCittadinoAction.do`
 
-| Campo | Descrizione | Formato |
-| :- | :- | :- |
-| `codop` | - | `confermaInserimentoAppuntamentoCittadino` |
-| `idRegista` | *Identificativo dell'ufficio* | *Vedi [**Uffici**](https://passaporto-facile.alexsandri.com/uffici/)* |
-| `richiedente` | - | `altriRic` |
-| `idAppuntamento` | *Identificativo del richiedente* | - |
-| `linguaApp` | *La lingua dell'applicazione* | `italiano` |
-| `data` | *La data dell'appuntamento* | `dd-mm-yyyy` |
-| `orario` | *L'ora dell'appuntamento* | `h.00` o `hh.00` |
-| `valoreOra` | *Uguale a `orario`* | `h.00` o `hh.00` |
-| `oraPlus` | *`orario` con un'ora in più* | `h.00` o `hh.00` |
-| `codiceFiscale` | *Il codice fiscale del richiedente* | - |
-| `nome` | *Il nome del richiedente* | - |
-| `cognome` | *Il cognome del richiedente* | - |
-| `sesso` | *Il sesso del richiedente* | `M` o `F` |
-| `dataNascita` | *La data di nascita del richiedente* | `dd-mm-yyyy` |
-| `codStatoNascita` | *Il codice dello Stato di nascita del richiedente* | `XXX` (*ISO 3166-1 alpha 3*) |
-| `provinciaNascita` | *Sigla della provincia di nascita del richiedente* | `XX` |
-| `comuneNascita` | *Comune di nascita del richiedente* | - |
-| `codStatoResidenza` | *Il codice dello Stato di residenza del richiedente* | `XXX` (*ISO 3166-1 alpha 3*) |
-| `provincia` | *Sigla della provincia di residenza del richiedente* | `XX` |
-| `comuneResidenza` | *Comune di residenza del richiedente* | - |
-| `indirizzo` | *Indirizzo di residenza del richiedente* | - |
-| `numeroCivico` | *Numero civico dell'indirizzo di residenza del richiedente* | - |
-| `telefono` | *Numero di telefono del richiedente* | - |
-| `altezza` | *Altezza del richiedente in centimetri* | - |
-| `email` | *Indirizzo email del richiedente* | - |
-| `email2` | *Uguale ad `email`* | - |
-| `occhi` | *Colore degli occhi del richiedente* | `Azzurri`, `Grigi`, `Verdi`, `Marroni` o `Neri` |
-| `statoCivile` | *Stato civile del richiedente* | `celibe`, `coniugato/a`, `divorziato/a`, `nubile`, `separato/a`, `tutelato/a` o `vedovo/a` |
-| `cognomeConiuge` | *Eventuale cognome del coniuge* | - |
-| `nomeConiuge` | *Eventuale nome del coniuge* | - |
-| `codiceDocumento` | *Tipo di documento d'identità del richiedente* | *Vedi [`codiceDocumento`](#codicedocumento)* |
-| `numeroDocumento` | *Numero del documento d'identità del richiedente* | - |
-| `haFigli` | *Se il richiedente ha figli minori* | `S`(ì) o `N`(o) |
-| `precedentiPenali` | *Se il richiedente è a conoscenza di motivi ostativi al rilascio del passaporto (**art.3 L.1185/67**)* | `S`(ì) o `N`(o) |
-| `sDataScadenzaPassaporto` | *Eventuale data di scadenza del passaporto in possesso del richiedente* | `dd-mm-yyyy` |
-| `note` | *Eventuali note* | - |
+| Campo | Descrizione | Formato | Richiesto |
+| :- | :- | :- | :-: |
+| `codop` | - | `confermaInserimentoAppuntamentoCittadino` | :white_check_mark: |
+| `idRegista` | *Identificativo dell'ufficio* | *Vedi [**Uffici**](https://passaporto-facile.alexsandri.com/uffici/)* | :white_check_mark: |
+| `richiedente` | - | `altriRic` | :white_check_mark: |
+| `idAppuntamento` | *Identificativo del richiedente* | - | :white_check_mark: |
+| `linguaApp` | *La lingua dell'applicazione* | `italiano` | :white_check_mark: |
+| `data` | *La data dell'appuntamento* | `dd-mm-yyyy` | :white_check_mark: |
+| `orario` | *L'ora dell'appuntamento* | `h.00` o `hh.00` | :white_check_mark: |
+| `valoreOra` | *Uguale a `orario`* | `h.00` o `hh.00` | :white_check_mark: |
+| `oraPlus` | *`orario` con un'ora in più* | `h.00` o `hh.00` | :white_check_mark: |
+| `codiceFiscale` | *Il codice fiscale del richiedente* | - | :white_check_mark: |
+| `nome` | *Il nome del richiedente* | - | :white_check_mark: |
+| `cognome` | *Il cognome del richiedente* | - | :white_check_mark: |
+| `sesso` | *Il sesso del richiedente* | `M` o `F` | :white_check_mark: |
+| `dataNascita` | *La data di nascita del richiedente* | `dd-mm-yyyy` | :white_check_mark: |
+| `codStatoNascita` | *Il codice dello Stato di nascita del richiedente* | `XXX` (*ISO 3166-1 alpha 3*) | :white_check_mark: |
+| `provinciaNascita` | *Sigla della provincia di nascita del richiedente* | `XX` | :white_check_mark: |
+| `comuneNascita` | *Comune di nascita del richiedente* | - | :white_check_mark: |
+| `codStatoResidenza` | *Il codice dello Stato di residenza del richiedente* | `XXX` (*ISO 3166-1 alpha 3*) | :white_check_mark: |
+| `provincia` | *Sigla della provincia di residenza del richiedente* | `XX` | :white_check_mark: |
+| `comuneResidenza` | *Comune di residenza del richiedente* | - | :white_check_mark: |
+| `indirizzo` | *Indirizzo di residenza del richiedente* | - | :white_check_mark: |
+| `numeroCivico` | *Numero civico dell'indirizzo di residenza del richiedente* | - | :white_check_mark: |
+| `telefono` | *Numero di telefono del richiedente* | - | :white_check_mark: |
+| `altezza` | *Altezza del richiedente in centimetri* | - | :white_check_mark: |
+| `email` | *Indirizzo email del richiedente* | - | :white_check_mark: |
+| `email2` | *Uguale ad `email`* | - | :white_check_mark: |
+| `occhi` | *Colore degli occhi del richiedente* | `Azzurri`, `Grigi`, `Verdi`, `Marroni` o `Neri` | :white_check_mark: |
+| `statoCivile` | *Stato civile del richiedente* | `celibe`, `coniugato/a`, `divorziato/a`, `nubile`, `separato/a`, `tutelato/a` o `vedovo/a` | :white_check_mark: |
+| `cognomeConiuge` | *Eventuale cognome del coniuge* | - | :x: |
+| `nomeConiuge` | *Eventuale nome del coniuge* | - | :x: |
+| `codiceDocumento` | *Tipo di documento d'identità del richiedente* | *Vedi [`codiceDocumento`](#codicedocumento)* | :white_check_mark: |
+| `numeroDocumento` | *Numero del documento d'identità del richiedente* | - | :white_check_mark: |
+| `haFigli` | *Se il richiedente ha figli minori* | `S`(ì) o `N`(o) | :white_check_mark: |
+| `precedentiPenali` | *Se il richiedente è a conoscenza di motivi ostativi al rilascio del passaporto (**art.3 L.1185/67**)* | `S`(ì) o `N`(o) | :white_check_mark: |
+| `sDataScadenzaPassaporto` | *Eventuale data di scadenza del passaporto in possesso del richiedente* | `dd-mm-yyyy` | :x: |
+| `note` | *Eventuali note* | - | :x: |
 
 #### `codiceDocumento`
 
