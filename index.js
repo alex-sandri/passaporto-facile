@@ -76,31 +76,6 @@ convertAndUpdate(
   'precedentiPenali', (e) => e.target.checked
 );
 
-document
-  .getElementById('richiedenteIsTitolare')
-  .addEventListener('change', (e) => {
-    const richiedenteIsTitolare = e.target.checked;
-
-    document.getElementById('altriRic').classList.toggle('d-none');
-
-    document.querySelector('input[name=richiedente]')?.remove();
-
-    document.getElementById('idAppuntamento')?.removeAttribute('name');
-
-    if (!richiedenteIsTitolare) {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'richiedente';
-      input.value = 'altriRic';
-
-      document.querySelector('form').appendChild(input);
-
-      document
-        .getElementById('idAppuntamento')
-        .setAttribute('name', 'idAppuntamento');
-    }
-  });
-
 document.getElementById('statoCivile').addEventListener('change', e => {
   const shouldHideSpouseNameInputs = e.target.value !== 'coniugato/a';
 

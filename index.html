@@ -90,6 +90,14 @@
         <form method="post" action="https://www.passaportonline.poliziadistato.it/GestioneAppuntamentiCittadinoAction.do" target="_blank" class="pt-5">
           <!-- HIDDEN INPUTS - BEGIN -->
           <input type="hidden" name="codop" value="confermaInserimentoAppuntamentoCittadino">
+          <!--
+            These* can be left empty so that a new user is automatically added
+            with the provided info, thus not requiring other ids.
+
+            *: `richiedente` and `idAppuntamento`.
+          -->
+          <input type="hidden" name="richiedente" value="">
+          <input type="hidden" name="idAppuntamento" value="">
           <!-- TODO: add support for other languages -->
           <input type="hidden" name="linguaApp" value="italiano">
           <!--
@@ -119,17 +127,6 @@
           <div class="form-group">
             <label for="idRegista" class="input-number-label">Identificativo ufficio</label>
             <input type="number" name="idRegista" id="idRegista" class="form-control" data-bs-input min="0">
-          </div>
-          <div class="form-check form-check-group">
-            <input id="richiedenteIsTitolare" type="checkbox" checked>
-            <label for="richiedenteIsTitolare">Il richiedente è il titolare del profilo</label>
-            <small class="form-text">Se si prende appuntamento per un'altra persona occorre rimuovere la spunta da questa casella.</small>
-          </div>
-          <div id="altriRic" class="row d-none">
-            <div class="form-group">
-              <label for="idAppuntamento" class="input-number-label">Identificativo richiedente</label>
-              <input type="number" id="idAppuntamento" class="form-control" data-bs-input min="0">
-            </div>
           </div>
           <div class="row">
             <div class="form-group col-md">
@@ -409,28 +406,6 @@ console.log(output);</code></pre>
                     <use href="/bootstrap-italia/svg/sprites.svg#it-arrow-right"></use>
                   </svg>
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="card-wrapper">
-            <div class="card">
-              <div class="card-body">
-                <h3 class="card-title h5">Richiedente</h3>
-                <p class="card-text font-serif">
-                  Dalla pagina <b><i>Home</i></b> incolla il seguente codice
-                  nella <i>console</i> del <i>browser</i> per ottenere gli
-                  identificativi di tutti i richiedenti registrati nel tuo
-                  profilo.
-                </p>
-<pre class="text-secondary"><code>const output = [...document.querySelectorAll('.tab_app_content')]
-  .filter(e => e.querySelector(':scope form[action="/GestioneRichiedentiAction.do"]') !== null)
-  .map(e => [e.querySelector(':scope > .tab_app_nome > span').innerText, e.querySelector(':scope input[name="idAppuntamento"]').value])
-  .reduce((prev, curr) => prev + `\n${curr[0]}: ${curr[1]}`, '')
-  .trim();
-
-console.log(output);</code></pre>
               </div>
             </div>
           </div>
