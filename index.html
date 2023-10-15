@@ -143,7 +143,7 @@
             <label for="idRegista" class="input-number-label">Identificativo ufficio</label>
             <input type="number" name="idRegista" id="idRegista" class="form-control" data-bs-input min="0" aria-describedby="idRegistaDescription">
             <small id="idRegistaDescription" class="form-text">
-              Vedi <a href="#how-to-office-id" class="alert-link">qui</a> per capire come ottenerlo
+              Vedi <a href="/uffici" class="alert-link">qui</a> per ottenerlo
             </small>
           </div>
           <div class="row">
@@ -392,45 +392,6 @@
     </div>
   </section>
 
-  <section class="section section-neutral" aria-describedby="titleHowTo">
-    <div class="section-content">
-      <div class="container white-color">
-        <div class="row mb-3">
-          <div class="col-12">
-            <h2 id="titleHowTo">Come ottenere i vari identificativi</h2>
-          </div>
-        </div>
-        <div class="row mb-1">
-          <div class="card-wrapper">
-            <div id="how-to-office-id" class="card">
-              <div class="card-body">
-                <h3 class="card-title h5">Ufficio</h3>
-                <p class="card-text font-serif">
-                  Dalla pagina <b><i>Inserisci Appuntamento</i></b> incolla il
-                  seguente codice nella <i>console</i> del <i>browser</i> per
-                  ottenere gli identificativi di tutti gli uffici disponibili
-                  nella provincia selezionata.
-                </p>
-<pre class="text-secondary"><code>const output = [...document.querySelectorAll('.imposta_utenti > tbody > tr.data')]
-  .map(e => [e.querySelector(':scope > td[headers="descrizione"]').innerText, e.id])
-  .reduce((prev, curr) => prev + `\n${curr[0]}: ${curr[1]}`, '')
-  .trim();
-
-console.log(output);</code></pre>
-                <a class="read-more" href="/uffici">
-                  <span class="text">Vedi uffici conosciuti</span>
-                  <svg class="icon">
-                    <use href="/bootstrap-italia/svg/sprites.svg#it-arrow-right"></use>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer class="it-footer">
     <div class="it-footer-main">
       <div class="container">
@@ -453,9 +414,7 @@ console.log(output);</code></pre>
       <div class="container">
         <ul class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
           <li class="list-inline-item">
-            <a href="/uffici" title="Uffici conosciuti">
-              Uffici conosciuti
-            </a>
+            <a href="/uffici" title="Uffici">Uffici</a>
           </li>
           <li class="list-inline-item">
             <a href="https://github.com/alex-sandri/passaporto-facile" title="Codice sorgente">
